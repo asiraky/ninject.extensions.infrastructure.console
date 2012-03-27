@@ -2,16 +2,16 @@
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata>
     <id>ninject.extensions.infrastructure.console</id>
-    <version>1.0.0.0</version>
+    <version>1.0.0.3</version>
     <authors>AaronHS</authors>
     <owners>AaronHS</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides console application support over Ninject</description>
-    <releaseNotes>First Release</releaseNotes>
+    <releaseNotes>added better support for applicationcontect</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <dependencies>
-      <dependency id="ninject.extensions.infrastructure" version="1.0.0.0" />
+      <dependency id="ninject.extensions.infrastructure" version="1.0.0.1" />
     </dependencies>
   </metadata>
 </package>
