@@ -23,14 +23,9 @@ namespace Ninject.Extensions.Infrastructure.Console
             return new ApplicationStarter(new IocContainer()).BootStrap(assemblies);
         }
 
-        public static IBootStrappedSyntax BootStrapAssembliesContaining<T>()
-        {
-            return new ApplicationStarter(new IocContainer()).BootStrap<T>();
-        }
-
         public IBootStrappedAndConfiguredSyntax InjectContext(string[] args)
         {
-            iocContainer.Resolver.Bind<ApplicationContext>().ToConstant(args);
+            iocContainer.Resolver.Bind<ApplicationContext>().ToConstant((ApplicationContext)args);
             return this;
         }
 
@@ -71,12 +66,6 @@ namespace Ninject.Extensions.Infrastructure.Console
         private IBootStrappedSyntax BootStrap(params string[] assemblies)
         {
             iocContainer.WireDependenciesInAssemblies(assemblies);
-            return this;
-        }
-
-        private IBootStrappedSyntax BootStrap<T>()
-        {
-            iocContainer.WireDependenciesInAssemblyContaining<T>();
             return this;
         }
     }
