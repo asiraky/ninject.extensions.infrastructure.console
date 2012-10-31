@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninject.Extensions.Infrastructure.Console", "Ninject.Extensions.Infrastructure.Console\Ninject.Extensions.Infrastructure.Console.csproj", "{2D6B4CBC-5079-45D2-8914-C761BA578BD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninject.Extensions.Infrastructure.Console.Tests", "Ninject.Infrastructure.Conole.Tests\Ninject.Extensions.Infrastructure.Console.Tests.csproj", "{326880B4-90BA-4977-84FB-C80C96F86139}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninject.Extensions.Infrastructure.Console.Tests", "Ninject.Extensions.Infrastructure.Console.Tests\Ninject.Extensions.Infrastructure.Console.Tests.csproj", "{326880B4-90BA-4977-84FB-C80C96F86139}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
