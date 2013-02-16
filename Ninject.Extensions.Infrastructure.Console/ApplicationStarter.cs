@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Ninject.Extensions.Infrastructure.Console.Syntax;
 
 namespace Ninject.Extensions.Infrastructure.Console
@@ -11,6 +12,11 @@ namespace Ninject.Extensions.Infrastructure.Console
         private ApplicationStarter(IocContainer iocContainer)
         {
             this.iocContainer = iocContainer;
+        }
+
+        public static IBootStrappedSyntax BootStrapThisAssembly()
+        {
+            return new ApplicationStarter(new IocContainer()).BootStrap(Assembly.GetCallingAssembly().GetName().Name);
         }
 
         public static IBootStrappedSyntax BootStrapAssembliesMatching(string assemblyScanningAlgorithm)
@@ -29,32 +35,35 @@ namespace Ninject.Extensions.Infrastructure.Console
             return this;
         }
 
-        public IBootStrappedAndConfiguredSyntax FireBeforeEvent(Action @event)
+        public IBootStrappedAndConfiguredSyntax FireBeforeEvent(Action<ApplicationContext> @event)
         {
-            @event();
+            @event(iocContainer.Resolver.Get<ApplicationContext>());
             return this;
         }
 
-        public IBootStrappedAndConfiguredSyntax FireBeforeEvents(IEnumerable<Action> events)
+        public IBootStrappedAndConfiguredSyntax FireBeforeEvents(IEnumerable<Action<ApplicationContext>> events)
         {
-            foreach (var @event in events) @event();
+            foreach (var @event in events)
+                FireBeforeEvent(@event);
             return this;
         }
 
         public IExecutedSyntax AndStartTheConsoleRunner()
         {
-            iocContainer.Resolver.Get<IConsoleRunner>().Execute(iocContainer.Resolver.Get<ApplicationContext>());
+            iocContainer.Resolver.Get<IConsoleRunner>()
+                .Execute(iocContainer.Resolver.Get<ApplicationContext>());
             return this;
         }
 
-        public void FireAfterEvent(Action @event)
+        public void FireAfterEvent(Action<ApplicationContext> @event)
         {
-            @event();
+            @event(iocContainer.Resolver.Get<ApplicationContext>());
         }
 
-        public void FireAfterEvents(IEnumerable<Action> events)
+        public void FireAfterEvents(IEnumerable<Action<ApplicationContext>> events)
         {
-            foreach (var @event in events) @event();
+            foreach (var @event in events)
+                FireAfterEvent(@event);
         }
 
         private IBootStrappedSyntax BootStrap(string assemblyScanningAlgorithm)

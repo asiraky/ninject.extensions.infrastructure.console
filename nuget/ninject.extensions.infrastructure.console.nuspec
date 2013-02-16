@@ -6,7 +6,7 @@
 
     <id>ninject.extensions.infrastructure.console</id>
 
-    <version>2.0.0.1</version>
+    <version>2.0.0.2</version>
 
     <authors>AaronHS</authors>
 
@@ -18,7 +18,7 @@
 
     <description>Provides console application support over Ninject</description>
 
-    <releaseNotes>upgraded to ninject 3</releaseNotes>
+    <releaseNotes>added applicationcontext argument to before and after events action</releaseNotes>
 
     <copyright>Copyright 2012</copyright>
 

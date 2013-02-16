@@ -19,24 +19,26 @@ namespace Ninject.Extensions.Infrastructure.Console
             RawArgs = new Dictionary<string, string>();
             var counter = 0;
 
-            while (args.Count() > counter)
+            var enumerable = args as string[] ?? args.ToArray();
+
+            while (enumerable.Count() > counter)
             {
-                if (args.Count() > counter + 1
-                    && args.ElementAt(counter).StartsWith("-")
-                    && !args.ElementAt(counter + 1).StartsWith("-"))
+                if (enumerable.Count() > counter + 1
+                    && enumerable.ElementAt(counter).StartsWith("-")
+                    && !enumerable.ElementAt(counter + 1).StartsWith("-"))
                 {
                     //the current arg is a -arg and the next is a value of that arg e.g. -db sales
                     //so add this argument as the key and the next argument as the value and increment +2
-                    RawArgs.Add(args.ElementAt(counter).TrimStart('-'), args.ElementAt(counter + 1));
+                    RawArgs.Add(enumerable.ElementAt(counter).TrimStart('-'), enumerable.ElementAt(counter + 1));
                     counter += 2;
                 }
-                else if (args.Count() > counter
-                    && args.ElementAt(counter).StartsWith("-")
-                    && args.ElementAt(counter + 1).StartsWith("-"))
+                else if (enumerable.Count() > counter
+                    && enumerable.ElementAt(counter).StartsWith("-")
+                    && enumerable.ElementAt(counter + 1).StartsWith("-"))
                 {
                     //the current arg is -arg and the next is also -arg which means we just add 
                     //this argument as the key and an empty value as its value then increment +1
-                    RawArgs.Add(args.ElementAt(counter).TrimStart('-'), string.Empty);
+                    RawArgs.Add(enumerable.ElementAt(counter).TrimStart('-'), string.Empty);
                     counter++;
                 }
             }

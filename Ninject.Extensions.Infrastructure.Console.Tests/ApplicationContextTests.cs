@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Ninject.Extensions.Infrastructure.Console;
+﻿using System.Linq;
 using NUnit.Framework;
 
-
-namespace Ninject.Infrastructure.Conole.Tests
+namespace Ninject.Extensions.Infrastructure.Console.Tests
 {
     [TestFixture]
     public class ApplicationContextTests

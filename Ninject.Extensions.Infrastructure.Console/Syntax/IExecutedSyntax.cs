@@ -5,7 +5,7 @@ namespace Ninject.Extensions.Infrastructure.Console.Syntax
 {
     public interface IExecutedSyntax
     {
-        void FireAfterEvent(Action @event);
-        void FireAfterEvents(IEnumerable<Action> events);
+        void FireAfterEvent(Action<ApplicationContext> @event);
+        void FireAfterEvents(IEnumerable<Action<ApplicationContext>> events);
     }
 }
